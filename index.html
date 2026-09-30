@@ -2,14 +2,10 @@
 
 <html lang="en">
 <head>
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-/>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="#151515" name="theme-color"/>
-<title>Halo Auto Triage</title>
+<title>Halo Auto Triage Post-Implementation Results</title>
 <style>
     :root {
       --york-red: #e31837;
@@ -28,7 +24,7 @@
       --blue: #235a75;
       --blue-soft: #e7f2f7;
       --focus: #ffcc00;
-      --chrome-h: 0.24rem;
+      --chrome-h: 4.45rem;
       --footer-h: 4.3rem;
       --rail-w: 3.6rem;
       --font: "IBM Plex Sans", "Helvetica Neue", "novo sans", sans-serif;
@@ -107,6 +103,98 @@
       background: linear-gradient(90deg, var(--york-red) var(--deck-progress, 8.33%), rgba(255, 255, 255, 0.16) 0);
       content: "";
       transition: background 420ms ease;
+    }
+
+    .deck-chrome {
+      position: fixed;
+      z-index: 70;
+      top: 0.24rem;
+      right: 0;
+      left: 0;
+      display: grid;
+      height: calc(var(--chrome-h) - 0.24rem);
+      grid-template-columns: minmax(18rem, 1fr) auto minmax(18rem, 1fr);
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1.15rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(15, 15, 15, 0.94);
+      color: var(--paper);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: flex;
+      min-width: 0;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      width: 3.45rem;
+      height: 2rem;
+      align-items: center;
+      justify-content: center;
+      background: var(--york-red);
+      color: var(--paper);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-title {
+      overflow: hidden;
+      color: #efefef;
+      font-size: 0.78rem;
+      font-weight: 650;
+      letter-spacing: 0.08em;
+      text-overflow: ellipsis;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .slide-status {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      color: #d7d7d7;
+      font-size: 0.77rem;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.05em;
+    }
+
+    .slide-status strong {
+      color: var(--paper);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .chrome-tools {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.4rem;
+    }
+
+    .chrome-button {
+      display: inline-flex;
+      min-width: 2.5rem;
+      min-height: 2.5rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.55rem 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      color: #eeeeee;
+      font-size: 0.76rem;
+      font-weight: 650;
+    }
+
+    .chrome-button:hover,
+    .chrome-button[aria-pressed="true"] {
+      border-color: rgba(255, 255, 255, 0.55);
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .chrome-icon {
@@ -1642,53 +1730,6 @@
       gap: 0.65rem;
     }
 
-    #slide-08 {
-      background: #fafafa;
-      color: var(--ink);
-    }
-
-    #slide-08 .now-grid {
-      display: grid;
-      width: min(1320px, calc(100% - clamp(2rem, 5vw, 5rem)));
-      grid-template-columns: minmax(24rem, 0.82fr) minmax(36rem, 1.18fr);
-      gap: clamp(3rem, 7vw, 7rem);
-      align-items: center;
-    }
-
-    #slide-08 .slide-number {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip-path: inset(50%);
-      white-space: nowrap;
-    }
-
-    #slide-08 .now-heading {
-      align-self: center;
-    }
-
-    #slide-08 .eyebrow {
-      margin-bottom: 1.6rem;
-      color: var(--york-red);
-      font-size: 0.86rem;
-      letter-spacing: 0.15em;
-    }
-
-    #slide-08 .now-grid h2 {
-      max-width: 6.3ch;
-      margin: 0;
-      color: #111111;
-      font-size: clamp(4rem, 5.8vw, 5.25rem);
-      font-weight: 620;
-      line-height: 0.94;
-    }
-
-    .guardrail-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
     .guardrail-card {
       display: grid;
       grid-template-columns: 3.2rem 1fr;
@@ -1698,40 +1739,6 @@
       padding: 0.7rem 1rem;
       border: 1px solid rgba(255, 255, 255, 0.22);
       background: rgba(255, 255, 255, 0.07);
-    }
-
-    #slide-08 .guardrail-card {
-      min-height: 5.35rem;
-      padding: 0.9rem 1rem;
-      border-color: #d4d4d4;
-      background: #ffffff;
-      box-shadow: 0 1.7rem 2.4rem rgba(0, 0, 0, 0.08);
-      grid-template-columns: 3rem minmax(0, 1fr);
-      gap: 1.05rem;
-      align-content: center;
-    }
-
-    #slide-08 .guardrail-card span {
-      display: grid;
-      width: 3rem;
-      height: 3rem;
-      place-items: center;
-      background: #f11746;
-      color: #ffffff;
-      font-size: 0.9rem;
-      letter-spacing: 0;
-    }
-
-    #slide-08 .guardrail-card strong {
-      margin-bottom: 0.25rem;
-      color: #171717;
-      font-size: 1rem;
-    }
-
-    #slide-08 .guardrail-card p {
-      max-width: 34rem;
-      color: #5c5c5c;
-      font-size: 0.75rem;
     }
 
     .guardrail-card span {
@@ -1903,36 +1910,6 @@
       font-size: 0.88rem;
       font-weight: 520;
       line-height: 1.5;
-    }
-
-    .impact-list {
-      display: grid;
-      gap: 0.7rem;
-      margin: 0;
-      padding-left: 1.15rem;
-      color: #444444;
-      font-size: 0.88rem;
-      font-weight: 520;
-      line-height: 1.5;
-    }
-
-    .impact-list li {
-      padding-left: 0.15rem;
-    }
-
-    .impact-list li::marker {
-      color: var(--york-red);
-    }
-
-    .impact-list ul {
-      display: grid;
-      gap: 0.35rem;
-      margin: 0.55rem 0 0;
-      padding-left: 1.15rem;
-    }
-
-    .impact-list ul li::marker {
-      color: #777777;
     }
 
     /* Readiness */
@@ -2112,26 +2089,16 @@
       content: "";
     }
 
-    .comms-item:nth-child(1)::before {
-      background: #777777;
-    }
-
-    .comms-item:nth-child(2)::before {
-      background: #d99929;
-    }
-
+    .comms-item:nth-child(2)::before,
     .comms-item:nth-child(3)::before {
-      background: var(--york-red);
+      background: #d99929;
     }
 
     .comms-item:nth-child(4)::before {
       background: var(--blue);
     }
 
-    .comms-item:nth-child(5)::before {
-      background: #6b5ca5;
-    }
-
+    .comms-item:nth-child(5)::before,
     .comms-item:nth-child(6)::before {
       background: var(--green);
     }
@@ -2249,7 +2216,7 @@
       left: 0;
       display: grid;
       height: var(--footer-h);
-      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
       gap: 1rem;
       padding: 0.7rem 1.15rem 0.7rem calc(var(--rail-w) + 1.15rem);
@@ -2258,57 +2225,19 @@
       color: var(--paper);
     }
 
-    .footer-tools {
-      grid-column: 1;
-      display: flex;
-      min-width: 0;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .footer-button {
-      display: inline-flex;
-      min-width: 2.65rem;
-      min-height: 2.65rem;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.6rem 0.8rem;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      background: transparent;
-      color: var(--paper);
-      font-size: 0.76rem;
-      font-weight: 680;
-    }
-
-    .footer-button:hover,
-    .footer-button[aria-pressed="true"] {
-      border-color: var(--paper);
-      background: var(--paper);
-      color: var(--ink);
-    }
-
-    .footer-status {
-      grid-column: 2;
-      color: #d7d7d7;
+    .footer-title {
+      overflow: hidden;
+      color: #bdbdbd;
       font-size: 0.77rem;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0.05em;
-      text-align: center;
+      font-weight: 590;
+      text-overflow: ellipsis;
       white-space: nowrap;
     }
 
-    .footer-status strong {
-      color: var(--paper);
-      font-size: 0.92rem;
-      font-weight: 700;
-    }
-
     .deck-nav {
-      grid-column: 3;
+      grid-column: 2;
       display: flex;
       align-items: center;
-      justify-self: end;
       gap: 0.5rem;
     }
 
@@ -2747,6 +2676,14 @@
         display: none;
       }
 
+      .deck-chrome {
+        grid-template-columns: 1fr auto;
+      }
+
+      .slide-status {
+        display: none;
+      }
+
       .hero-grid,
       .definition-grid,
       .value-layout,
@@ -2851,6 +2788,7 @@
 
     @media (max-width: 760px) {
       :root {
+        --chrome-h: 4rem;
         --footer-h: 4rem;
       }
 
@@ -2858,12 +2796,18 @@
         min-height: 28rem;
       }
 
+      .deck-chrome {
+        padding-inline: 0.75rem;
+      }
+
+      .brand-title,
       .tool-label,
+      .footer-title,
       .nav-label {
         display: none;
       }
 
-      .footer-button,
+      .chrome-button,
       .nav-button {
         min-width: 2.5rem;
         padding-inline: 0.65rem;
@@ -2874,48 +2818,15 @@
       }
 
       .deck-footer {
-        grid-template-columns: auto minmax(3.6rem, 1fr) auto;
-        gap: 0.55rem;
+        grid-template-columns: 1fr;
+        justify-items: end;
         padding-inline: 0.75rem;
-      }
-
-      .footer-tools {
-        grid-column: 1;
-      }
-
-      .footer-status {
-        grid-column: 2;
-      }
-
-      .deck-nav {
-        grid-column: 3;
       }
 
       .slide-inner {
         width: min(100% - 2rem, 44rem);
         align-content: start;
         padding: 2.4rem 0;
-      }
-
-      #slide-08 .now-grid {
-        width: min(100% - 2rem, 44rem);
-        grid-template-columns: 1fr;
-        gap: 2.25rem;
-        place-content: start;
-      }
-
-      .guardrail-grid {
-        grid-template-columns: 1fr;
-      }
-
-      #slide-08 .guardrail-card {
-        min-height: 5.35rem;
-        gap: 1rem;
-      }
-
-      #slide-08 .guardrail-card:nth-child(n) {
-        margin-right: 0;
-        margin-left: 0;
       }
 
       h1 {
@@ -3324,44 +3235,691 @@
         transform: none;
       }
     }
-  </style>
+  
+
+/* =========================================================
+   Post-implementation refresh additions
+   Keeps the original slideshow frame and visual language
+   ========================================================= */
+.success-layout {
+  display: grid;
+  grid-template-columns: 0.86fr 1.14fr;
+  gap: clamp(1.4rem, 3vw, 2.6rem);
+  align-items: start;
+}
+.success-kpi-stack {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.05rem;
+}
+.success-kpi {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 0.9rem;
+  align-items: center;
+  min-height: 4.95rem;
+  padding: 0.85rem 0.95rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+}
+.success-kpi strong {
+  color: var(--red);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  line-height: .9;
+  letter-spacing: -.06em;
+}
+.success-kpi span {
+  color: rgba(255,255,255,.86);
+  font-size: .94rem;
+  line-height: 1.25;
+}
+.success-board {
+  display: grid;
+  gap: 1rem;
+}
+.success-visual-card {
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 24px 56px rgba(0,0,0,.25);
+}
+.success-visual-card__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 1.15rem 0.4rem;
+}
+.success-visual-card__head h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: -.02em;
+}
+.success-visual-card__head p {
+  margin: .2rem 0 0;
+  color: var(--muted);
+  font-size: .74rem;
+}
+.success-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: .25rem .52rem;
+  background: rgba(12,148,82,.12);
+  color: #0b6b43;
+  border: 1px solid rgba(12,148,82,.22);
+  font-size: .68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  white-space: nowrap;
+}
+.success-bars {
+  display: grid;
+  gap: .8rem;
+  padding: .8rem 1.15rem 1.05rem;
+}
+.success-bar-row {
+  display: grid;
+  grid-template-columns: 5rem minmax(0,1fr) 4.6rem;
+  align-items: center;
+  gap: .7rem;
+  font-size: .82rem;
+  font-weight: 800;
+}
+.success-track {
+  position: relative;
+  height: 1.7rem;
+  background: #ececec;
+  overflow: hidden;
+}
+.success-fill {
+  height: 100%;
+  background: var(--red);
+}
+.success-fill--before {
+  background: #2b2b2b;
+}
+.success-value {
+  text-align: right;
+}
+.success-explainers {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: .65rem;
+}
+details.success-detail {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid rgba(0,0,0,.1);
+}
+details.success-detail summary {
+  min-height: 3.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: .78rem .9rem;
+  cursor: pointer;
+  list-style: none;
+  font-size: .82rem;
+  font-weight: 900;
+}
+details.success-detail summary::-webkit-details-marker { display:none; }
+details.success-detail summary::after {
+  content: "+";
+  color: var(--red);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+details.success-detail[open] summary::after { content: "–"; }
+details.success-detail p {
+  margin: 0;
+  padding: 0 .9rem .85rem;
+  color: var(--muted);
+  font-size: .72rem;
+  line-height: 1.35;
+}
+.lesson-layout {
+  display: grid;
+  grid-template-columns: .82fr 1.18fr;
+  gap: clamp(1.6rem, 4vw, 3.2rem);
+  align-items: start;
+}
+.lesson-main {
+  padding: 1.5rem;
+  background: #fff;
+  border-top: 5px solid var(--red);
+  box-shadow: 0 18px 45px rgba(0,0,0,.08);
+}
+.lesson-main h3 {
+  margin: 0 0 .7rem;
+  font-size: clamp(1.55rem, 2.7vw, 2.45rem);
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+.lesson-main p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .98rem;
+}
+.lesson-stack {
+  display: grid;
+  gap: .85rem;
+}
+.lesson-card {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: 1rem;
+  min-height: 5.35rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+}
+.lesson-card span {
+  display: grid;
+  place-items: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 900;
+}
+.lesson-card strong {
+  display: block;
+  margin-bottom: .25rem;
+  font-size: 1rem;
+}
+.lesson-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.35;
+}
+.lesson-card--next span { background: var(--red); }
+.success-note {
+  margin-top: .7rem;
+  color: rgba(255,255,255,.62);
+  font-size: .72rem;
+  line-height: 1.35;
+}
+@media (max-width: 900px) {
+  .success-layout,
+  .lesson-layout {
+    grid-template-columns: 1fr;
+  }
+  .success-explainers {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Slide 10 fix: improve contrast and bar visibility on the success slide */
+.phase--future#slide-10 .success-kpi {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+}
+
+.phase--future#slide-10 .success-kpi strong {
+  color: var(--ink);
+}
+
+.phase--future#slide-10 .success-kpi span {
+  color: #4e4e4e;
+}
+
+.phase--future#slide-10 .success-kpi small {
+  color: #6d6d6d;
+}
+
+.phase--future#slide-10 .success-note {
+  color: #666666;
+}
+
+.phase--future#slide-10 .success-visual-card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06);
+}
+
+.phase--future#slide-10 .success-track {
+  height: 1.9rem;
+  border: 1px solid #dddddd;
+  background: #efefef;
+}
+
+.phase--future#slide-10 .success-fill {
+  min-width: 0.35rem;
+  background: var(--york-red);
+}
+
+.phase--future#slide-10 .success-fill--before {
+  background: #2f2f2f;
+}
+
+.phase--future#slide-10 .success-bar-row {
+  color: var(--ink);
+}
+
+.phase--future#slide-10 .success-value {
+  color: var(--ink);
+}
+
+
+
+/* Additional refinements: success slide callouts and human-value slide */
+.phase--future#slide-10 .success-kpi {
+  grid-template-columns: 8.6rem 1fr;
+  gap: 1.15rem;
+  align-items: center;
+  padding: 0.95rem 1.05rem;
+}
+
+.phase--future#slide-10 .success-kpi strong {
+  font-size: clamp(2.5rem, 4.2vw, 3.45rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+}
+
+.phase--future#slide-10 .success-kpi span {
+  display: block;
+  font-size: 0.98rem;
+  line-height: 1.25;
+}
+
+.phase--future#slide-10 .success-kpi small {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.84rem;
+  line-height: 1.25;
+}
+
+.impact-layout {
+  display: grid;
+  grid-template-columns: 0.86fr 1.14fr;
+  gap: clamp(1.6rem, 3vw, 2.8rem);
+  align-items: start;
+}
+
+.impact-main {
+  display: grid;
+  gap: 1rem;
+}
+
+.impact-callout {
+  padding: 1.35rem 1.4rem;
+  border-left: 4px solid var(--york-red);
+  background: #ffffff;
+  box-shadow: 0 16px 34px rgba(0,0,0,0.06);
+}
+
+.impact-callout strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--ink);
+  font-size: 1.08rem;
+}
+
+.impact-callout p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.45;
+}
+
+.impact-stack {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.impact-card {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 1rem;
+  align-items: start;
+  min-height: 6.1rem;
+  padding: 1.05rem 1.1rem;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.06);
+}
+
+.impact-stat {
+  display: grid;
+  place-items: center;
+  min-height: 3.7rem;
+  padding: 0.45rem;
+  background: var(--ink);
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-align: center;
+  line-height: 0.95;
+}
+
+.impact-card strong {
+  display: block;
+  margin-bottom: 0.28rem;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.impact-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.38;
+}
+
+@media (max-width: 900px) {
+  .impact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* Slide 10 requested refinements */
+.phase--future#slide-10 .success-layout {
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: clamp(1.8rem, 4vw, 3.2rem);
+  align-items: center;
+}
+
+.phase--future#slide-10 .success-kpi-stack--tight {
+  max-width: 31rem;
+  margin-top: 1.45rem;
+  gap: 0.85rem;
+}
+
+.phase--future#slide-10 .success-kpi--clean {
+  grid-template-columns: minmax(8.6rem, auto) 1fr;
+  min-height: 4.55rem;
+  padding: 0.78rem 1rem;
+  overflow: hidden;
+}
+
+.phase--future#slide-10 .success-kpi--clean strong {
+  white-space: nowrap;
+  font-size: clamp(2.45rem, 3.55vw, 3.2rem);
+  line-height: 0.9;
+}
+
+.phase--future#slide-10 .success-kpi--clean span {
+  min-width: 0;
+  overflow-wrap: normal;
+  color: #4e4e4e;
+  font-size: 0.91rem;
+  line-height: 1.2;
+}
+
+.phase--future#slide-10 .success-kpi--clean small {
+  display: block;
+  margin-top: 0.18rem;
+  color: #666;
+  font-size: 0.8rem;
+  line-height: 1.15;
+}
+
+.phase--future#slide-10 .success-board {
+  position: relative;
+  padding-bottom: 2.1rem;
+}
+
+.phase--future#slide-10 .success-board-title {
+  margin: 0 0 0.85rem;
+  color: var(--ink);
+  font-size: clamp(1.8rem, 3.1vw, 2.7rem);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.phase--future#slide-10 .success-visual-card__head {
+  align-items: center;
+  padding: 0.92rem 1.15rem 0.2rem;
+}
+
+.phase--future#slide-10 .metric-title-wrap {
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.phase--future#slide-10 .metric-title-wrap h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+}
+
+.phase--future#slide-10 .metric-info {
+  position: relative;
+}
+
+.phase--future#slide-10 .metric-info summary {
+  display: inline-grid;
+  width: 1.25rem;
+  height: 1.25rem;
+  place-items: center;
+  border: 1px solid #cfcfcf;
+  border-radius: 50%;
+  background: #f7f7f7;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 900;
+  list-style: none;
+}
+
+.phase--future#slide-10 .metric-info summary::-webkit-details-marker {
+  display: none;
+}
+
+.phase--future#slide-10 .metric-info[open] summary {
+  border-color: var(--york-red);
+  background: var(--york-red);
+  color: #fff;
+}
+
+.phase--future#slide-10 .metric-info p {
+  position: absolute;
+  z-index: 10;
+  top: 1.75rem;
+  left: -0.4rem;
+  width: min(18rem, 40vw);
+  margin: 0;
+  padding: 0.75rem 0.85rem;
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.22);
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+.phase--future#slide-10 .success-subtitle {
+  margin: 0 1.15rem 0.55rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+
+.phase--future#slide-10 .success-explainers,
+.phase--future#slide-10 .success-note {
+  display: none !important;
+}
+
+.phase--future#slide-10 .success-significance {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #666;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 900px) {
+  .phase--future#slide-10 .success-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .phase--future#slide-10 .success-kpi-stack--tight {
+    max-width: none;
+  }
+}
+
+
+
+/* Slide 11 fit refinement */
+.phase--future#slide-11 .impact-layout {
+  align-items: center;
+}
+
+.phase--future#slide-11 .impact-main {
+  gap: 0.9rem;
+}
+
+.phase--future#slide-11 .impact-main .lede {
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 1.45vw, 1.25rem);
+}
+
+.phase--future#slide-11 .impact-callout {
+  max-width: 33rem;
+  padding: 1.15rem 1.25rem;
+}
+
+.phase--future#slide-11 .impact-stack {
+  gap: 0.78rem;
+}
+
+.phase--future#slide-11 .impact-card {
+  min-height: 5.4rem;
+  padding: 0.95rem 1rem;
+}
+
+
+
+/* Slide 10 duplicate KPI-text cleanup */
+.phase--future#slide-10 .success-kpi--solo {
+  display: flex;
+  align-items: center;
+  min-height: 4.6rem;
+  padding: 0.72rem 1rem;
+}
+
+.phase--future#slide-10 .success-kpi--solo strong {
+  font-size: clamp(2.9rem, 4.8vw, 4rem);
+  line-height: 0.9;
+}
+
+
+
+/* v7 requested refinements */
+#slide-10 .success-kpi-stack--tight {
+  display: none !important;
+}
+
+#slide-07 .milestone,
+#slide-07 .milestone--watch,
+#slide-07 .milestone--gate,
+#slide-07 .milestone--live {
+  border-left: 1px solid var(--line) !important;
+  background: var(--paper) !important;
+}
+
+#slide-07 .milestone::before,
+#slide-07 .milestone--watch::before,
+#slide-07 .milestone--gate::before,
+#slide-07 .milestone--live::before {
+  background: #787878 !important;
+}
+
+#slide-07 .milestone--now {
+  border-left: 0.35rem solid var(--green) !important;
+  background: #ffffff !important;
+}
+
+#slide-07 .milestone--now::before {
+  background: var(--green) !important;
+}
+
+#slide-07 .milestone--now .milestone-date {
+  color: var(--green);
+}
+
+
+
+/* Slide 8 icon polish */
+#slide-08 .guardrail-card .guardrail-icon {
+  display: grid;
+  place-items: center;
+}
+
+#slide-08 .guardrail-card .guardrail-icon svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+#slide-08 .guardrail-card .guardrail-icon--heart svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+</style>
 </head>
 <body>
 <a class="skip-link" href="#stage">Skip to presentation</a>
 <div class="deck" id="deck">
+<header aria-label="Presentation controls" class="deck-chrome">
+<div class="brand">
+<span class="brand-title">Halo Auto Triage</span>
+</div>
+<div aria-live="polite" class="slide-status">
+<strong id="slideCounter">01 / 12</strong>
+</div>
+<div class="chrome-tools">
+<button aria-label="Open slide overview" class="chrome-button" id="overviewButton" title="Overview (M)" type="button">
+<svg aria-hidden="true" class="chrome-icon" viewbox="0 0 20 20">
+<rect height="5" width="5" x="2.5" y="2.5"></rect>
+<rect height="5" width="5" x="12.5" y="2.5"></rect>
+<rect height="5" width="5" x="2.5" y="12.5"></rect>
+<rect height="5" width="5" x="12.5" y="12.5"></rect>
+</svg>
+<span class="tool-label">Overview</span>
+</button>
+<button aria-label="Toggle fullscreen" class="chrome-button" id="fullscreenButton" title="Fullscreen (F)" type="button">
+<svg aria-hidden="true" class="chrome-icon" viewbox="0 0 20 20">
+<path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4"></path>
+</svg>
+</button>
+</div>
+</header>
 <nav aria-label="Slides" class="slide-rail">
-<ol class="rail-list"><li><button aria-label="Go to slide 1: From inbox to action" class="rail-button" data-go="0" data-label="From inbox to action" type="button"></button></li><li><button aria-label="Go to slide 2: Current process" class="rail-button" data-go="1" data-label="Current process" type="button"></button></li><li><button aria-label="Go to slide 3: Current risks" class="rail-button" data-go="2" data-label="Current risks" type="button"></button></li><li><button aria-label="Go to slide 4: New Value" class="rail-button" data-go="3" data-label="New Value" type="button"></button></li><li><button aria-label="Go to slide 5: New process" class="rail-button" data-go="4" data-label="New process" type="button"></button></li><li><button aria-label="Go to slide 6: New risks and controls" class="rail-button" data-go="5" data-label="New risks and controls" type="button"></button></li><li><button aria-label="Go to slide 7: Release timeline" class="rail-button" data-go="6" data-label="Release timeline" type="button"></button></li><li><button aria-label="Go to slide 8: Why before fall peak" class="rail-button" data-go="7" data-label="Why before fall peak" type="button"></button></li><li><button aria-label="Go to slide 9: Who is impacted" class="rail-button" data-go="8" data-label="Who is impacted" type="button"></button></li><li><button aria-label="Go to slide 10: Service Desk training" class="rail-button" data-go="9" data-label="Service Desk training" type="button"></button></li><li><button aria-label="Go to slide 11: Communications cadence" class="rail-button" data-go="10" data-label="Communications cadence" type="button"></button></li><li><button aria-label="Go to slide 12: Leadership role" class="rail-button" data-go="11" data-label="Leadership role" type="button"></button></li></ol>
+<ol class="rail-list"><li><button aria-label="Go to slide 1: Our shortcut to service" class="rail-button" data-go="0" data-label="Our shortcut to service" type="button"></button></li><li><button aria-label="Go to slide 2: Service waited on triage" class="rail-button" data-go="1" data-label="Service waited on triage" type="button"></button></li><li><button aria-label="Go to slide 3: Delayed service" class="rail-button" data-go="2" data-label="Delayed service" type="button"></button></li><li><button aria-label="Go to slide 4: Faster service today" class="rail-button" data-go="3" data-label="Faster service today" type="button"></button></li><li><button aria-label="Go to slide 5: Automated efficiency" class="rail-button" data-go="4" data-label="Automated efficiency" type="button"></button></li><li><button aria-label="Go to slide 6: Risks we mitigated" class="rail-button" data-go="5" data-label="Risks we mitigated" type="button"></button></li><li><button aria-label="Go to slide 7: How we rolled out" class="rail-button" data-go="6" data-label="How we rolled out" type="button"></button></li><li><button aria-label="Go to slide 8: Why during peak" class="rail-button" data-go="7" data-label="Why during peak" type="button"></button></li><li><button aria-label="Go to slide 9: How we prepared our people" class="rail-button" data-go="8" data-label="How we prepared our people" type="button"></button></li><li><button aria-label="Go to slide 10: Our success" class="rail-button" data-go="9" data-label="Our success" type="button"></button></li><li><button aria-label="Go to slide 11: What this means day to day" class="rail-button" data-go="10" data-label="What this means day to day" type="button"></button></li><li><button aria-label="Go to slide 12: Lessons learned" class="rail-button" data-go="11" data-label="Lessons learned" type="button"></button></li></ol>
 </nav>
-<main class="stage" id="stage" tabindex="-1">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section aria-labelledby="slide-01-title" class="slide slide--ink hero-slide is-active phase--current" data-title="From inbox to action" id="slide-01">
+<main class="stage" id="stage" tabindex="-1"><section aria-labelledby="slide-01-title" class="slide slide--ink hero-slide is-active phase--current" data-title="Our shortcut to service" id="slide-01">
 <div class="slide-inner hero-grid">
 <span class="slide-number">01</span>
 <div class="hero-copy">
-<span class="eyebrow anim" style="--delay:80ms">Halo Auto Triage</span>
-<h1 class="anim" id="slide-01-title" style="--delay:150ms">SHORTCUT TO SERVICE</h1>
-<p class="lede anim" style="--delay:230ms">Bypassing our biggest bottleneck so solutions start sooner</p>
+<span class="eyebrow anim" style="--delay:80ms">Halo Auto Triage · Post-implementation results</span>
+<h1 class="anim" id="slide-01-title" style="--delay:150ms">OUR SHORTCUT TO SERVICE</h1>
+<p class="lede anim" style="--delay:230ms">How we bypassed our biggest bottleneck and moved from automation to measurable impact</p>
 <div class="hero-facts anim" style="--delay:310ms">
-<span class="hero-fact">HIGHEST-VOLUME SERVICE CATEGORIES IN SCOPE</span>
-<span class="hero-fact">PRODUCTION MONITORING · AUG 19–28</span>
-<span class="hero-fact">FINAL READINESS GATE · AUG 30</span>
-<span class="hero-fact">ACTIVE ROUTING · AUG 31</span>
+<span class="hero-fact">MVP LIVE IN PROD</span>
+<span class="hero-fact">27 SERVICE CATEGORIES IN SCOPE</span>
+<span class="hero-fact">DUO FOLLOW-UP AUTOMATED</span>
+<span class="hero-fact">TICKET-LEVEL RESULTS VALIDATED</span>
 </div>
 </div>
-<div aria-label="A ticket is assigned to Auto Triage, analyzed, and then auto-routed, held for Duo information, or returned for manual triage before service is delivered and performance is measured" class="hero-route anim" role="img" style="--delay:250ms">
+<div aria-label="A ticket is assigned to Auto Triage, analyzed, and then auto-routed, held for DUO information, or returned for manual triage before service is delivered" class="hero-route anim" role="img" style="--delay:250ms">
 <div class="route-flow">
 <div class="route-node"><div><small></small><strong>Ticket submitted / forwarded to askIT</strong></div></div>
 <span aria-hidden="true" class="route-arrow"></span>
@@ -3369,7 +3927,7 @@
 <span aria-hidden="true" class="route-arrow"></span>
 <div class="route-node route-node--auto"><div><small></small><strong>Analyzed by Auto Triage</strong></div></div>
 <span aria-hidden="true" class="route-arrow"></span>
-<div class="route-node route-node--gate"><div><small></small><strong>In scope and classified with high confidence?</strong></div></div>
+<div class="route-node route-node--gate"><div><small></small><strong>In scope and confidently classified?</strong></div></div>
 <div class="route-outcomes">
 <svg aria-hidden="true" class="route-branch-lines" preserveaspectratio="none" viewbox="0 0 100 20">
 <path d="M50 0 V6 H16.667 V15 M50 6 V15 M50 6 H83.333 V15"></path>
@@ -3377,8 +3935,8 @@
 <polygon points="49.233,14.5 50.767,14.5 50,20"></polygon>
 <polygon points="82.566,14.5 84.1,14.5 83.333,20"></polygon>
 </svg>
-<div class="route-node route-node--outcome route-node--success"><div><small>YES</small><strong>Auto-route</strong></div></div>
-<div class="route-node route-node--outcome route-node--duo"><div><small>Yes + Duo request missing info</small><strong>Auto-route + request info</strong></div></div>
+<div class="route-node route-node--outcome route-node--success"><div><small>YES</small><strong>Auto route</strong></div></div>
+<div class="route-node route-node--outcome route-node--duo"><div><small>YES + DUO MISSING INFO</small><strong>Auto route + request info</strong></div></div>
 <div class="route-node route-node--outcome"><div><small>NO</small><strong>Manual triage</strong></div></div>
 </div>
 <div aria-hidden="true" class="route-merge">
@@ -3391,118 +3949,69 @@
 </div>
 </div>
 </div>
-</section><section aria-labelledby="slide-02-title" class="slide slide--ink phase--current" data-title="Current process" id="slide-02">
+</section><section aria-labelledby="slide-02-title" class="slide slide--ink phase--current is-after" data-title="Service waited on triage" id="slide-02">
 <div class="slide-inner">
 <span class="slide-number">02</span>
 <div class="flow-heading">
 <div>
-<span class="eyebrow anim">Current process / problem</span>
-<h2 class="anim" id="slide-02-title" style="--delay:140ms">Service waits on triage</h2>
+<span class="eyebrow anim">Before Auto Triage / Manual Process</span>
+<h2 class="anim" id="slide-02-title" style="--delay:140ms">Service waited on triage</h2>
 </div>
-<p class="lede anim" style="--delay:210ms"><strong>Valuable time is spent routing rather than resolving.</strong> Before service teams can help, a Client Services agent must read, classify, and route the request</p>
+<p class="lede anim" style="--delay:210ms">Before the right team could help, a Service Desk agent had to read, classify, and route the request</p>
 </div>
-<div aria-label="Current manual triage process" class="current-flow anim" role="group" style="--delay:240ms">
-<article class="current-step">
-<span class="num">01</span>
-<strong>Request emailed</strong>
-<p>The requester emails askIT@yorku.ca, or the message is forwarded there</p>
-</article>
-<article class="current-step">
-<span class="num">02</span>
-<strong>Ticket created</strong>
-<p>Halo records the new request</p>
-</article>
-<article class="current-step current-step--manual">
-<span class="num">03</span>
-<strong>Agent reads</strong>
-<p>A triage agent identifies the intent</p>
-</article>
-<article class="current-step current-step--manual">
-<span class="num">04</span>
-<strong>Agent routes</strong>
-<p>The agent selects the category and team</p>
-</article>
-<article class="current-step">
-<span class="num">05</span>
-<strong>Service begins</strong>
-<p>Often days later, the assigned team begins resolving the request</p>
-</article>
+<div aria-label="Previous manual triage process" class="current-flow anim" role="group" style="--delay:240ms">
+<article class="current-step"><span class="num">01</span><strong>Request emailed</strong><p>The requester emailed, or was forwarded to, askIT@yorku.ca</p></article>
+<article class="current-step"><span class="num">02</span><strong>Ticket created</strong><p>Halo recorded the new request</p></article>
+<article class="current-step current-step--manual"><span class="num">03</span><strong>Agent read</strong><p>A triage agent identified the intent</p></article>
+<article class="current-step current-step--manual"><span class="num">04</span><strong>Agent routed</strong><p>The agent selected the category and team</p></article>
+<article class="current-step"><span class="num">05</span><strong>Service began</strong><p>The assigned team could then start resolving the request</p></article>
 </div>
 <div aria-hidden="true" class="manual-band anim" style="--delay:300ms">
 <span>Intake</span><span>Manual routing work</span><span>Delivery</span>
 </div>
+<div class="current-takeaway anim" style="--delay:360ms">
+<strong>Valuable time was spent routing instead of resolving</strong><span aria-hidden="true">→</span>
 </div>
-</section><section aria-labelledby="slide-03-title" class="slide slide--warm phase--current" data-title="Current risks" id="slide-03">
+</div>
+</section><section aria-labelledby="slide-03-title" class="slide slide--warm phase--current is-after" data-title="Delayed service" id="slide-03">
 <div class="slide-inner risk-now-grid">
 <span class="slide-number">03</span>
 <div>
-<span class="eyebrow anim">Current risks</span>
+<span class="eyebrow anim">The problem we solved</span>
 <h2 class="anim" id="slide-03-title" style="--delay:140ms">Delayed service</h2>
-<p class="lede anim" style="--delay:210ms">Every minute spent moving a ticket delays diagnosis, support, or resolution</p>
-<div class="peak-callout anim" style="--delay:280ms">Peak times magnify all four risks</div>
+<p class="lede anim" style="--delay:210ms">Every minute spent moving a ticket was a minute before diagnosis, support, or resolution began</p>
+<div class="peak-callout anim" style="--delay:280ms">Peak times magnified all four risks</div>
 </div>
 <div class="risk-now-stack">
-<article class="risk-now-card anim" style="--delay:150ms">
-<span class="risk-icon">01</span>
-<h3>Queue delay</h3>
-<p>Requests wait for a routing decision before reaching the people who can act</p>
-</article>
-<article class="risk-now-card anim" style="--delay:210ms">
-<span class="risk-icon">02</span>
-<h3>Variation</h3>
-<p>Manual classification can vary from person to person</p>
-</article>
-<article class="risk-now-card anim" style="--delay:270ms">
-<span class="risk-icon">03</span>
-<h3>Back-and-forth</h3>
-<p>Incomplete Duo requests create a repeat-contact loop and potentially hours of wait</p>
-</article>
-<article class="risk-now-card anim" style="--delay:330ms">
-<span class="risk-icon">04</span>
-<h3>Capacity drain</h3>
-<p>Skilled agents spend scarce peak capacity moving routine work between queues</p>
-</article>
+<article class="risk-now-card anim" style="--delay:150ms"><span class="risk-icon">01</span><h3>Queue delay</h3><p>Requests waited for a routing decision before reaching the people who could act</p></article>
+<article class="risk-now-card anim" style="--delay:210ms"><span class="risk-icon">02</span><h3>Variation</h3><p>Manual classification could vary from agent to agent.</p></article>
+<article class="risk-now-card anim" style="--delay:270ms"><span class="risk-icon">03</span><h3>Back-and-forth</h3><p>Incomplete access requests created repeat contact loops and avoidable waiting</p></article>
+<article class="risk-now-card anim" style="--delay:330ms"><span class="risk-icon">04</span><h3>Capacity drain</h3><p>Skilled agents spent scarce capacity moving routine work between queues</p></article>
 </div>
 </div>
-</section><section aria-labelledby="slide-04-title" class="slide slide--warm solution-slide phase--future" data-title="New Value" id="slide-04">
+</section><section aria-labelledby="slide-04-title" class="slide slide--warm solution-slide phase--future is-after" data-title="Faster service today" id="slide-04">
 <div class="slide-inner risk-now-grid">
 <span class="slide-number">04</span>
 <div>
-<span class="eyebrow anim">New value</span>
-<h2 class="anim" id="slide-04-title" style="--delay:140ms">Faster service</h2>
-<p class="lede anim" style="--delay:210ms">Every supported ticket classified with high confidence bypasses manual triage, returning time to service delivery</p>
-<div class="peak-callout anim" style="--delay:280ms">Faster routing + fewer follow-ups = more capacity for higher-value work</div>
+<span class="eyebrow anim">The new value delivered</span>
+<h2 class="anim" id="slide-04-title" style="--delay:140ms">Faster service today</h2>
+<p class="lede anim" style="--delay:210ms">Every supported ticket classified with high confidence bypasses manual triage and moves closer to service delivery</p>
+<div class="peak-callout anim" style="--delay:280ms">Faster routing · fewer follow-up loops · more capacity for service</div>
 </div>
 <div class="risk-now-stack">
-<article class="risk-now-card anim" style="--delay:150ms">
-<span class="risk-icon">01</span>
-<h3>Direct routing</h3>
-<p>Supported tickets classified with high confidence move directly to the team that can act, so <strong>service starts sooner</strong></p>
-</article>
-<article class="risk-now-card anim" style="--delay:210ms">
-<span class="risk-icon">02</span>
-<h3>Consistent decisions</h3>
-<p><strong>Consistent logic, interpretation, and categorization</strong> are applied to every eligible request</p>
-</article>
-<article class="risk-now-card anim" style="--delay:270ms">
-<span class="risk-icon">03</span>
-<h3>Automated follow-up</h3>
-<p>Incomplete Duo requests receive an immediate request for missing information, reducing a wait that can currently last hours and creating an estimated <strong>45% efficiency gain</strong></p>
-</article>
-<article class="risk-now-card anim" style="--delay:330ms">
-<span class="risk-icon">04</span>
-<h3>Capacity returned</h3>
-<p>Confidently routed in-scope tickets require no manual classification, <strong>freeing skilled agents for higher-value work</strong></p>
-</article>
+<article class="risk-now-card anim" style="--delay:150ms"><span class="risk-icon">01</span><h3>Direct routing</h3><p>Supported, high-confidence tickets move directly to the team that can act</p></article>
+<article class="risk-now-card anim" style="--delay:210ms"><span class="risk-icon">02</span><h3>Consistent decisions</h3><p>A consistent classification approach can now be applied to every eligible request.</p></article>
+<article class="risk-now-card anim" style="--delay:270ms"><span class="risk-icon">03</span><h3>Automated follow-up</h3><p>Incomplete DUO requests receive the approved request for missing information earlier in the process</p></article>
+<article class="risk-now-card anim" style="--delay:330ms"><span class="risk-icon">04</span><h3>Capacity returned</h3><p>Confidently routed in-scope tickets no longer require manual Service Desk classification</p></article>
 </div>
 </div>
-</section><section aria-labelledby="slide-05-title" class="slide slide--ink phase--future" data-title="New process" id="slide-05">
+</section><section aria-labelledby="slide-05-title" class="slide slide--ink phase--future is-after" data-title="Automated efficiency" id="slide-05">
 <div class="slide-inner path-layout">
 <span class="slide-number">05</span>
 <div>
-<span class="eyebrow anim">New process</span>
+<span class="eyebrow anim">Our new process</span>
 <h2 class="anim" id="slide-05-title" style="--delay:140ms">Automated efficiency</h2>
-<p class="lede anim" style="--delay:210ms">Every incoming AskIT ticket is assessed. Only in-scope, high confidence tickets are auto-routed</p>
+<p class="lede anim" style="--delay:210ms">Every incoming askIT ticket is assessed. Only in-scope, high-confidence tickets are auto-routed</p>
 </div>
 <div class="anim" style="--delay:230ms">
 <div class="process-map">
@@ -3513,470 +4022,142 @@
 <div class="common-step"><span>04</span>Scope + confidence checked</div>
 </div>
 <div aria-label="Auto Triage outcome paths" aria-orientation="vertical" class="path-tabs" role="tablist">
-<button aria-controls="path-route" aria-selected="true" class="path-tab" id="path-tab-route" role="tab" type="button">
-<span class="path-tab-number">05A</span>
-<span class="path-tab-copy"><strong>High confidence</strong><small>Auto-route</small></span>
-</button>
-<button aria-controls="path-response" aria-selected="false" class="path-tab" id="path-tab-response" role="tab" tabindex="-1" type="button">
-<span class="path-tab-number">05B</span>
-<span class="path-tab-copy"><strong>Incomplete Duo</strong><small>Auto-route + request info</small></span>
-</button>
-<button aria-controls="path-human" aria-selected="false" class="path-tab" id="path-tab-human" role="tab" tabindex="-1" type="button">
-<span class="path-tab-number">05C</span>
-<span class="path-tab-copy"><strong>Low confidence</strong><small>Manual triage</small></span>
-</button>
+<button aria-controls="path-route" aria-selected="true" class="path-tab" id="path-tab-route" role="tab" type="button"><span class="path-tab-number">05A</span><span class="path-tab-copy"><strong>High confidence</strong><small>Auto route</small></span></button>
+<button aria-controls="path-response" aria-selected="false" class="path-tab" id="path-tab-response" role="tab" tabindex="-1" type="button"><span class="path-tab-number">05B</span><span class="path-tab-copy"><strong>Incomplete DUO</strong><small>Auto route + response</small></span></button>
+<button aria-controls="path-human" aria-selected="false" class="path-tab" id="path-tab-human" role="tab" tabindex="-1" type="button"><span class="path-tab-number">05C</span><span class="path-tab-copy"><strong>Low confidence</strong><small>Manual triage</small></span></button>
 </div>
-<section aria-labelledby="path-tab-route" class="path-panel" id="path-route" role="tabpanel">
-<h3>Direct to resolvers</h3>
-<div class="path-steps">
-<div class="path-step"><small>Classify</small><strong>Apply the supported service category</strong></div>
-<div class="path-step"><small>Assign</small><strong>Select the responsible processing team</strong></div>
-<div class="path-step"><small>Deliver</small><strong>The team reviews, responds, and resolves</strong></div>
-</div>
-<div class="path-result"><span>No Service Desk handoff required</span><span aria-hidden="true">✓</span></div>
-</section>
-<section aria-labelledby="path-tab-response" class="path-panel" hidden="" id="path-response" role="tabpanel">
-<h3>Instant follow-up</h3>
-<div class="path-steps">
-<div class="path-step"><small>Validate</small><strong>Confirm the defined Duo scenario applies</strong></div>
-<div class="path-step"><small>Respond</small><strong>Halo sends the approved request for information</strong></div>
-<div class="path-step"><small>Resume</small><strong>Service Desk continues when the user replies</strong></div>
-</div>
-<div class="path-result"><span>One avoidable waiting period is removed</span><span aria-hidden="true">✓</span></div>
-</section>
-<section aria-labelledby="path-tab-human" class="path-panel path-panel--human" hidden="" id="path-human" role="tabpanel">
-<h3>Trusted fallback</h3>
-<div class="path-steps">
-<div class="path-step"><small>Stop</small><strong>Automation does not force a classification</strong></div>
-<div class="path-step"><small>Return</small><strong>Return the ticket to the CS queue</strong></div>
-<div class="path-step"><small>Triage</small><strong>A Service Desk agent triages manually</strong></div>
-</div>
-<div class="path-result"><span>Human judgement remains our fallback</span><span aria-hidden="true">↩</span></div>
-</section>
+<section aria-labelledby="path-tab-route" class="path-panel" id="path-route" role="tabpanel"><h3>Direct to resolvers</h3><div class="path-steps"><div class="path-step"><small>Classify</small><strong>Apply the supported service category</strong></div><div class="path-step"><small>Assign</small><strong>Select the responsible processing team</strong></div><div class="path-step"><small>Deliver</small><strong>The team reviews, responds, and resolves</strong></div></div><div class="path-result"><span>No Service Desk handoff required</span><span aria-hidden="true">✓</span></div></section>
+<section aria-labelledby="path-tab-response" class="path-panel" hidden="" id="path-response" role="tabpanel"><h3>Ask for what is needed immediately</h3><div class="path-steps"><div class="path-step"><small>Validate</small><strong>Confirm the defined DUO scenario applies</strong></div><div class="path-step"><small>Respond</small><strong>Halo sends the approved canned request</strong></div><div class="path-step"><small>Resume</small><strong>Service Desk continues when the user replies</strong></div></div><div class="path-result"><span>One avoidable wait is removed.</span><span aria-hidden="true">✓</span></div></section>
+<section aria-labelledby="path-tab-human" class="path-panel path-panel--human" hidden="" id="path-human" role="tabpanel"><h3>Return the decision to a person</h3><div class="path-steps"><div class="path-step"><small>Stop</small><strong>Automation does not force a classification</strong></div><div class="path-step"><small>Return</small><strong>The ticket is unassigned to the normal queue</strong></div><div class="path-step"><small>Judge</small><strong>A Service Desk agent triages manually</strong></div></div><div class="path-result"><span>Human judgement as our fallback</span><span aria-hidden="true">↩</span></div></section>
 </div>
 </div>
 </div>
-</section><section aria-labelledby="slide-06-title" class="slide slide--ink phase--future" data-title="New risks and controls" id="slide-06">
+</section><section aria-labelledby="slide-06-title" class="slide slide--ink phase--future is-after" data-title="Risks we mitigated" id="slide-06">
 <div class="slide-inner control-layout">
 <span class="slide-number">06</span>
 <div>
-<span class="eyebrow anim">New risks / New controls</span>
+<span class="eyebrow anim">New controls</span>
 <h2 class="anim" id="slide-06-title" style="--delay:140ms">Mitigating risk</h2>
-<p class="control-note anim" style="--delay:210ms">The biggest risks remain the same whether a ticket is triaged automatically or manually. New risks have specific mitigations in place</p>
+<p class="control-note anim" style="--delay:210ms">Many of the core risks existed in both manual and automated triage. We added specific controls for the new risks introduced by automation.</p>
 </div>
 <div class="control-explorer anim" style="--delay:230ms">
 <div aria-label="Launch risks" class="control-list" role="tablist">
-<button aria-controls="control-route" aria-selected="true" class="control-tab" id="control-tab-route" role="tab" type="button">
-<span>01</span><span><strong>Wrong team</strong><small>Existing risk: a ticket is misclassified or misrouted</small></span>
-</button>
-<button aria-controls="control-response" aria-selected="false" class="control-tab" id="control-tab-response" role="tab" tabindex="-1" type="button">
-<span>02</span><span><strong>Wrong response</strong><small>Existing risk: we send the wrong follow-up</small></span>
-</button>
-<button aria-controls="control-stall" aria-selected="false" class="control-tab" id="control-tab-stall" role="tab" tabindex="-1" type="button">
-<span>03</span><span><strong>Stalled ticket</strong><small>New risk: processing does not complete as expected</small></span>
-</button>
-<button aria-controls="control-model" aria-selected="false" class="control-tab" id="control-tab-model" role="tab" tabindex="-1" type="button">
-<span>04</span><span><strong>Model underperforms</strong><small>New risk: Otto doesn't meet our projections or expectations</small></span>
-</button>
+<button aria-controls="control-route" aria-selected="true" class="control-tab" id="control-tab-route" role="tab" type="button"><span>01</span><span><strong>Wrong team</strong><small>Existing risk: a ticket is misclassified or misrouted</small></span></button>
+<button aria-controls="control-response" aria-selected="false" class="control-tab" id="control-tab-response" role="tab" tabindex="-1" type="button"><span>02</span><span><strong>Wrong response</strong><small>Existing risk: we send the wrong follow-up</small></span></button>
+<button aria-controls="control-stall" aria-selected="false" class="control-tab" id="control-tab-stall" role="tab" tabindex="-1" type="button"><span>03</span><span><strong>Stalled ticket</strong><small>New risk: processing does not complete as expected</small></span></button>
+<button aria-controls="control-model" aria-selected="false" class="control-tab" id="control-tab-model" role="tab" tabindex="-1" type="button"><span>04</span><span><strong>Model underperforms</strong><small>New risk: Otto does not meet our projections or expectations</small></span></button>
 </div>
-<section aria-labelledby="control-tab-route" class="control-panel" id="control-route" role="tabpanel">
-<div>
-<span class="tag tag--green">Guardrail</span>
-<h3>Auto-route <em>only</em> with high confidence</h3>
-</div>
-<ul class="guardrail-list">
-<li>Launch scope is limited to categories with sufficient training data and demonstrated classification confidence</li>
-<li>Receiving teams can follow <em>current</em> Departmental Triage best practices to mitigate misrouted tickets</li>
-<li>Recurring patterns are reported and used to improve the model. Auto-routing is intended to <em>reduce</em> misrouting over time</li>
-</ul>
-</section>
-<section aria-labelledby="control-tab-response" class="control-panel" hidden="" id="control-response" role="tabpanel">
-<div>
-<span class="tag tag--green">Guardrail</span>
-<h3>Only hunt the white whale: Duo 2FA 🐋</h3>
-</div>
-<ul class="guardrail-list">
-<li>Send an automatic response only to Duo requests submitted from a York University email address</li>
-<li>Respond only when a Duo request is missing required information</li>
-<li>Halo sends approved text based on an AI trigger, not AI-generated free-form advice</li>
-<li>If the follow-up doesn't apply, a Client Services agent takes over and continues as usual</li>
-</ul>
-</section>
-<section aria-labelledby="control-tab-stall" class="control-panel" hidden="" id="control-stall" role="tabpanel">
-<div>
-<span class="tag tag--green">Guardrail</span>
-<h3>Dashboard for rapid response</h3>
-</div>
-<ul class="guardrail-list">
-<li>Stalled tickets appear on the Otto Excellence dashboard</li>
-<li>The UIT Service Desk follows a simple recovery process</li>
-</ul>
-</section>
-<section aria-labelledby="control-tab-model" class="control-panel" hidden="" id="control-model" role="tabpanel">
-<div>
-<span class="tag tag--green">Guardrail</span>
-<h3>Better every day</h3>
-</div>
-<ul class="guardrail-list">
-<li>During two weeks of silent production monitoring, we compare AI and agent decisions</li>
-<li>We only go live when monitoring meets the agreed readiness criteria</li>
-<li>Low-confidence and out-of-scope tickets stay in the human process</li>
-<li>Every day, we gain more and better data to fine-tune the solution</li>
-</ul>
-</section>
+<section aria-labelledby="control-tab-route" class="control-panel" id="control-route" role="tabpanel"><div><span class="tag tag--green">Mitigation</span><h3>Auto route <em>only</em> when confident</h3></div><ul class="guardrail-list"><li>Launch scope stayed limited to the supported categories with the strongest training data</li><li>Receiving teams follow current Departmental Triage practices for misrouted tickets</li><li>Recurring patterns are reported and are being analyzed to improve the model</li></ul></section>
+<section aria-labelledby="control-tab-response" class="control-panel" hidden="" id="control-response" role="tabpanel"><div><span class="tag tag--green">Guardrail</span><h3>The defined DUO scenario stayed narrow</h3></div><ul class="guardrail-list"><li>Only eligible Duo requests triggered the automated response</li><li>Only missing-information cases were included</li><li>Halo sent approved canned text, not AI-generated free-form advice</li></ul></section>
+<section aria-labelledby="control-tab-stall" class="control-panel" hidden="" id="control-stall" role="tabpanel"><div><span class="tag tag--green">Guardrail</span><h3>Ready for rapid response</h3></div><ul class="guardrail-list"><li>The Service Desk followed a documented manual recovery playbook to recover stalled tickets and make sure they were triaged</li></ul></section>
+<section aria-labelledby="control-tab-model" class="control-panel" hidden="" id="control-model" role="tabpanel"><div><span class="tag tag--green">Guardrail</span><h3>Performance was proven before routing</h3></div><ul class="guardrail-list"><li>Silent production monitoring compared AI and agent decisions</li><li>Active routing followed a readiness review</li><li>Low-confidence and out-of-scope tickets stayed in the human process</li></ul></section>
 </div>
 </div>
-</section><section aria-labelledby="slide-07-title" class="slide slide--warm phase--future" data-title="Release timeline" id="slide-07">
+</section><section aria-labelledby="slide-07-title" class="slide slide--warm phase--future is-after" data-title="How we rolled out" id="slide-07">
 <div class="slide-inner timeline-layout">
 <span class="slide-number">07</span>
 <div>
-<span class="eyebrow anim">What happens when</span>
-<h2 class="anim" id="slide-07-title" style="--delay:140ms">Rollout timeline</h2>
-<p class="lede anim" style="--delay:210ms">We test the solution in QA and PROD and set readiness gates before it updates or routes a ticket</p>
+<span class="eyebrow anim">The rollout plan</span>
+<h2 class="anim" id="slide-07-title" style="--delay:140ms">How we rolled out</h2>
+<p class="lede anim" style="--delay:210ms">We tested in QA and production, set readiness gates, and moved only when the evidence supported it</p>
 </div>
 <div class="anim" style="--delay:230ms">
-<div aria-label="Auto Triage release timeline" class="timeline" role="group">
-<article class="milestone">
-<span class="milestone-date">Now → Aug 19</span>
-<div><h3>Build, test, prepare</h3><p>Complete technical validation, UAT, guidance, frontline training, and operational readiness</p></div>
-</article>
-<article class="milestone milestone--watch">
-<span class="milestone-date">Aug 19–28</span>
-<div><h3>Monitoring phase begins</h3><p>Analyze live production tickets and record decisions without updating, assigning, or routing them</p></div>
-</article>
-<article class="milestone milestone--gate">
-<span class="milestone-date">Aug 30</span>
-<div><h3>Readiness Gate</h3><p>Assess accuracy, exceptions, operations, and people readiness before active routing</p></div>
-</article>
-<article class="milestone milestone--live">
-<span class="milestone-date">Aug 31</span>
-<div><h3>Active routing begins</h3><p>Supported tickets classified with high confidence begin to be routed automatically. All others follow normal triage<br/><em>August 31 is a target contingent on a successful monitoring period</em></p></div>
-</article>
-<article class="milestone">
-<span class="milestone-date">Fall peak</span>
-<div><h3>Hypercare and refinement</h3><p>Monitor metrics and stalled tickets, recover exceptions, and continue fine-tuning based on the results</p></div>
-</article>
+<div aria-label="Auto Triage rollout timeline" class="timeline" role="group">
+<article class="milestone"><span class="milestone-date">2026</span><div><h3>Build, test, prepare</h3><p>Completed technical validation, UAT, guidance, training, communications, and operational readiness assessments</p></div></article>
+<article class="milestone"><span class="milestone-date">Aug 14–28</span><div><h3>Monitoring phase began</h3><p>Analyzed live tickets and recorded decisions without updating, assigning, or routing them</p></div></article>
+<article class="milestone"><span class="milestone-date">Aug 30</span><div><h3>Readiness gate</h3><p>Reviewed accuracy, exceptions, operations and people readiness before active routing</p></div></article>
+<article class="milestone"><span class="milestone-date">Aug 31</span><div><h3>Active routing began</h3><p>Eligible, high-confidence tickets began moving automatically. All others followed manual triage</p></div></article>
+<article class="milestone milestone--now"><span class="milestone-date">Now</span><div><h3>Hypercare and refinement</h3><p>Continue monitoring results, recovering exceptions and tuning based on evidence.</p></div></article>
 </div>
 </div>
 </div>
-</section><section aria-labelledby="slide-08-title" class="slide slide--red phase--future" data-title="Why before fall peak" id="slide-08">
+</section><section aria-labelledby="slide-08-title" class="slide slide--red phase--future is-after" data-title="Why during peak" id="slide-08">
 <div class="slide-inner now-grid">
 <span class="slide-number">08</span>
-<div class="now-heading">
-<span class="eyebrow anim">Why right now?</span>
+<div>
+<span class="eyebrow anim">Why during peak?</span>
 <h2 class="anim" id="slide-08-title" style="--delay:140ms">Highest volume = highest value</h2>
 </div>
 <div class="guardrail-stack">
-<article class="guardrail-card anim" style="--delay:150ms">
-  <span><i class="fas fa-ticket-simple" aria-hidden="true"></i></span>
-  <div>
-    <strong>Start with a small scope</strong>
-    <p>Only the most frequently used categories are eligible</p>
-  </div>
-</article>
-
-<article class="guardrail-card anim" style="--delay:210ms">
-  <span><i class="fas fa-umbrella" aria-hidden="true"></i></span>
-  <div>
-    <strong>Require high confidence</strong>
-    <p>Uncertain decisions stay with the Service Desk</p>
-  </div>
-</article>
-
-<article class="guardrail-card anim" style="--delay:270ms">
-  <span><i class="fas fa-chess-pawn" aria-hidden="true"></i></span>
-  <div>
-    <strong>Humans remain the heart</strong>
-    <p>People remain responsible for exceptions, judgement and service quality</p>
-  </div>
-</article>
-
-<article class="guardrail-card anim" style="--delay:330ms">
-  <span><i class="far fa-circle" aria-hidden="true"></i></span>
-  <div>
-    <strong>Observe before acting</strong>
-    <p>Two weeks of production data inform the decision</p>
-  </div>
-</article>
+<article class="guardrail-card anim" style="--delay:150ms"><span class="guardrail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="2.5"></circle><path d="M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg></span><div><strong>Started with a small scope</strong><p>Limited automation to the 27 most-requested supported service categories</p></div></article>
+<article class="guardrail-card anim" style="--delay:210ms"><span class="guardrail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-2.8 8-7 10-4.2-2-7-5.5-7-10V6l7-3z"></path><path d="M8.5 12l2.2 2.2 4.8-5"></path></svg></span><div><strong>Required high confidence</strong><p>Kept uncertain tickets with the Service Desk</p></div></article>
+<article class="guardrail-card anim" style="--delay:270ms"><span class="guardrail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"></path><circle cx="12" cy="12" r="2.8"></circle></svg></span><div><strong>Observed before acting</strong><p>Used production monitoring to confirm readiness before go-live</p></div></article>
+<article class="guardrail-card anim" style="--delay:330ms"><span class="guardrail-icon guardrail-icon--heart" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.4-9.6C1.2 7.7 3.3 5 6.4 5c1.8 0 3.2 1 4 2.2C11.2 6 12.6 5 14.4 5c3.1 0 5.2 2.7 3.8 6.4C16.3 16.4 12 21 12 21z"></path></svg></span><div><strong>Kept humans at the heart</strong><p>Kept people responsible for exceptions, judgement and service quality</p></div></article>
 </div>
-</div>
-</section><section aria-labelledby="slide-09-title" class="slide slide--soft phase--future" data-title="Who is impacted" id="slide-09">
-<div class="slide-inner impact-layout">
+
+</section><section aria-labelledby="slide-09-title" class="slide slide--soft phase--future is-after" data-title="How we prepared our people" id="slide-09">
+<div class="slide-inner training-layout">
 <span class="slide-number">09</span>
 <div>
-<span class="eyebrow anim">Impact matrix</span>
-<h2 class="anim" id="slide-09-title" style="--delay:140ms">Who feels the change?</h2>
-<div aria-label="Affected groups" class="impact-tabs anim" role="tablist" style="--delay:210ms">
-<button aria-controls="impact-requesters" aria-selected="true" class="impact-tab" id="impact-tab-requesters" role="tab" type="button">Our community</button>
-<button aria-controls="impact-agents" aria-selected="false" class="impact-tab" id="impact-tab-agents" role="tab" tabindex="-1" type="button">All IT agents</button>
-<button aria-controls="impact-desk" aria-selected="false" class="impact-tab" id="impact-tab-desk" role="tab" tabindex="-1" type="button">UIT Service Desk</button>
-<button aria-controls="impact-leaders" aria-selected="false" class="impact-tab" id="impact-tab-leaders" role="tab" tabindex="-1" type="button">IT leaders</button>
-</div>
-</div>
-<div class="anim" style="--delay:230ms">
-<section aria-labelledby="impact-tab-requesters" class="impact-panel" id="impact-requesters" role="tabpanel">
-<header class="impact-head"><h3>Requesters</h3><span class="impact-level">Low impact</span></header>
-<div class="impact-columns">
-<div class="impact-column">
-  <span>What changes</span>
-  <ul class="impact-list">
-    <li>Some requests reach the people who can help sooner</li>
-    <li>Incomplete Duo requests may receive an automatic reply requesting missing information</li>
-  </ul>
-</div>
-<div class="impact-column">
-  <span>What stays</span>
-  <ul class="impact-list">
-    <li>They continue to use the same service channels</li>
-    <li>The same support staff will resolve their requests</li>
-  </ul>
-</div>
-<div class="impact-column">
-  <span>Required action</span>
-  <ul class="impact-list">
-    <li><strong>Respond to automatic follow-ups when requested</strong></li>
-  </ul>
-</div>
-</div>
-</section>
-<section aria-labelledby="impact-tab-agents" class="impact-panel" hidden="" id="impact-agents" role="tabpanel">
-<header class="impact-head"><h3>IT agents</h3><span class="impact-level">Low impact</span></header>
-<div class="impact-columns">
-<div class="impact-column">
-  <span>What changes</span>
-  <ul class="impact-list">
-    <li>
-      Some tickets will be automatically routed to the following queues:
-      <ul>
-        <li> CTS</li>
-        <li> Classroom Operations</li>
-        <li> ED&amp;I</li>
-        <li> Learning Technology Services</li>
-        <li> UIT Service Desk</li>
-        <li> Telecommunications</li>
-      </ul>
-    </li>
-    <li>Tickets may reach all queues faster than before, whether routed automatically or manually</li>
-  </ul>
-</div>
-<div class="impact-column">
-  <span>What stays</span>
-  <ul class="impact-list">
-    <li>Current review, response, escalation, categorization, and resolution practices remain in place</li>
-  </ul>
-</div>
-<div class="impact-column">
-  <span>Required action</span>
-  <ul class="impact-list">
-    <li>Monitor ticket queues early and often</li>
-    <li><strong>Follow Halo best practices</strong>, especially for handling misrouted tickets and verifying categorization before resolution</li>
-    <li>
-      Notify OpEx about persistent routing errors
-      <ul>
-        <li>Raise an Incident to OpEx: Application &gt; HaloITSM &gt; Triage Agent Issue</li>
-      </ul>
-    </li>
-  </ul>
-</div>
-</div>
-</section>
-<section aria-labelledby="impact-tab-desk" class="impact-panel" hidden="" id="impact-desk" role="tabpanel">
-<header class="impact-head"><h3>UIT Service Desk</h3><span class="impact-level impact-level--high">Medium Impact</span></header>
-<div class="impact-columns">
-<div class="impact-column">
-  <span>What changes</span>
-  <ul class="impact-list">
-    <li>Less manual routing for confidently assessed in-scope ticket</li>
-    <li>The Service Desk monitors and recovers stalled tickets</li>
-  </ul>
-</div>
-<div class="impact-column">
-  <span>What stays</span>
-  <ul class="impact-list">
-    <li>The Service Desk continues to triage low-confidence, out-of-scope, incomplete, and exceptional requests</li>
-  </ul>
-</div>
-<div class="impact-column">
-  <span>Required action</span>
-  <ul class="impact-list">
-    <li>Monitor the queue and Otto Excellence Dashboard</li>
-    <li>Avoid interrupting active Otto Excellence processing</li>
-    <li>Recover stalled tickets</li>
-    <li>
-      Notify OpEx about persistent routing or stalling errors
-      <ul>
-        <li>Raise an Incident to OpEx: Application &gt; HaloITSM &gt; Triage Agent Issue</li>
-      </ul>
-    </li>
-  </ul>
-</div>
-</div>
-</section>
-<section aria-labelledby="impact-tab-leaders" class="impact-panel" hidden="" id="impact-leaders" role="tabpanel">
-<header class="impact-head"><h3>IT leaders and managers</h3><span class="impact-level">Low impact</span></header>
-<div class="impact-columns">
-<div class="impact-column">
-  <span>What changes</span>
-  <ul class="impact-list">
-    <li>Leaders receive clearer operational evidence about routing performance, exceptions, and readiness</li>
-  </ul>
-</div>
-<div class="impact-column">
-  <span>What stays</span>
-  <ul class="impact-list">
-    <li>Service ownership, escalation accountability, and human responsibility remain with people</li>
-  </ul>
-</div>
-<div class="impact-column">
-  <span>What we need</span>
-  <ul class="impact-list">
-    <li>Reinforce expectations</li>
-    <li>Confirm team readiness</li>
-    <li>Support evidence-based tuning during peak</li>
-  </ul>
-</div>
-</div>
-</section>
-</div>
-</div>
-</section><section aria-labelledby="slide-10-title" class="slide slide--soft phase--future" data-title="Service Desk training" id="slide-10">
-<div class="slide-inner training-layout">
-<span class="slide-number">10</span>
-<div>
-<span class="eyebrow anim">UIT Service Desk training</span>
-<h2 class="anim" id="slide-10-title" style="--delay:140ms">Prepare the Service Desk to...</h2>
-<p class="lede anim" style="--delay:210ms">With capacity freed from manual routing, the Service Desk will monitor Auto Triage and remediate issues</p>
+<span class="eyebrow anim">IT agent communication and resources</span>
+<h2 class="anim" id="slide-09-title" style="--delay:140ms">Prepared our Service Desk to...</h2>
 </div>
 <div class="training-playbook">
-<article class="training-card anim" style="--delay:160ms">
-<span class="training-num">01 · RECOGNIZE</span>
-<h3>Understand the process</h3>
-<p>Recognize when Otto Excellence is actively processing and avoid interrupting Auto Triage</p>
-</article>
-<article class="training-card anim" style="--delay:220ms">
-<span class="training-num">02 · MONITOR</span>
-<h3>Watch for issues</h3>
-<p>Check the IT Client Services queue and Otto Excellence Dashboard often</p>
-</article>
-<article class="training-card anim" style="--delay:280ms">
-<span class="training-num">03 · RECOVER</span>
-<h3>Route stalled tickets</h3>
-<p>Confirm that a ticket is stalled, then triage it as usual</p>
-</article>
-<article class="training-card anim" style="--delay:340ms">
-<span class="training-num">04 · REPORT</span>
-<h3>Turn patterns into improvement</h3>
-<p>Record and report recurring errors, unusual trends, and repeated stalls, then notify Operational Excellence</p>
-</article>
+<article class="training-card anim" style="--delay:160ms"><span class="training-num">01 · UNDERSTAND</span><h3>Understand the process</h3><p>Recognize when Otto Excellence is actively processing and avoid interrupting live triage</p></article>
+<article class="training-card anim" style="--delay:220ms"><span class="training-num">02 · WATCH</span><h3>Watch for issues</h3><p>Monitor the queue and action stalled tickets that need attention</p></article>
+<article class="training-card anim" style="--delay:280ms"><span class="training-num">03 · ROUTE</span><h3>Route stalled tickets</h3><p>Confirm the stall, apply the correct category and team, then route the ticket appropriately.</p></article>
+<article class="training-card anim" style="--delay:340ms"><span class="training-num">04 · IMPROVE</span><h3>Turn patterns into improvement</h3><p>Report recurring errors, unusual trends and repeated stalls to Operational Excellence.</p></article>
 </div>
 </div>
-</section><section aria-labelledby="slide-11-title" class="slide phase--future" data-title="Communications cadence" id="slide-11">
-<div class="slide-inner comms-layout">
+</section><section aria-labelledby="slide-10-title" class="slide slide--ink phase--future is-after" data-title="Our success" id="slide-10">
+<div class="slide-inner success-layout">
+<span class="slide-number">10</span>
+<div>
+<span class="eyebrow anim">Our success</span>
+<h2 class="anim" id="slide-10-title" style="--delay:140ms">We moved the needle... <i>RIGHT</i></h2>
+<p class="lede anim" style="--delay:210ms">Ticket-level results showed Duo requests moved through the process <i>MUCH</i> faster after automation</p>
+</div>
+<div class="success-board anim" style="--delay:300ms">
+
+<article class="success-visual-card">
+<div class="success-visual-card__head"><div class="metric-title-wrap"><h3>Mean</h3><details class="metric-info"><summary aria-label="What mean means">i</summary><p>The mathematical average. It shows the overall process change, but can be pulled upward by unusually long-running tickets.</p></details></div><span class="success-pill">51.6% lower</span></div>
+<p class="success-subtitle">Average total process time · all ticket durations averaged together</p>
+<div class="success-bars">
+<div class="success-bar-row"><span>Before</span><div class="success-track"><div class="success-fill success-fill--before" style="width:100%"></div></div><span class="success-value">54.1 h</span></div>
+<div class="success-bar-row"><span>After</span><div class="success-track"><div class="success-fill" style="width:48.4%"></div></div><span class="success-value">26.2 h</span></div>
+</div>
+</article>
+<article class="success-visual-card">
+<div class="success-visual-card__head"><div class="metric-title-wrap"><h3>Median</h3><details class="metric-info"><summary aria-label="What median means">i</summary><p>The middle ticket in the dataset. Half of tickets were faster and half were slower, so this is closer to the typical experience.</p></details></div><span class="success-pill">74.1% lower</span></div>
+<p class="success-subtitle">Median total process time · the middle ticket in the dataset</p>
+<div class="success-bars">
+<div class="success-bar-row"><span>Before</span><div class="success-track"><div class="success-fill success-fill--before" style="width:100%"></div></div><span class="success-value">39.4 h</span></div>
+<div class="success-bar-row"><span>After</span><div class="success-track"><div class="success-fill" style="width:25.9%"></div></div><span class="success-value">10.2 h</span></div>
+</div>
+</article>
+<div class="success-significance">p &lt; .001 · statistically significant</div>
+</div>
+</div>
+</section><section aria-labelledby="slide-11-title" class="slide slide--soft phase--future is-after" data-title="What this means day to day" id="slide-11">
+<div class="slide-inner impact-layout">
 <span class="slide-number">11</span>
-<div>
-<span class="eyebrow anim">The stage is set</span>
-<h2 class="anim" id="slide-11-title" style="--delay:140ms">How it plays out</h2>
-<p class="comms-note anim" style="--delay:210ms">Major value with minimal disruption</p>
+<div class="impact-main">
+<span class="eyebrow anim">What it means for york</span>
+<h2 class="anim" id="slide-11-title" style="--delay:140ms">The story behind the data</h2>
+<p class="lede anim" style="--delay:210ms">
 </div>
-<div aria-label="Proposed communication schedule" class="comms-schedule anim" role="group" style="--delay:230ms">
-<article class="comms-item">
-<div>
-<span class="comms-date">Aug 11</span>
-<h3>Change Advisory 1</h3>
-<p>First change advisory notifying IT staff of the Halo change and directing them to Auto Triage resources for more information</p>
-</div>
-<span class="comms-audience">All IT staff</span>
-</article>
-<article class="comms-item">
-<div>
-<span class="comms-date">Aug 19</span>
-<h3>Begin monitoring</h3>
-<p>The monitoring phase begins, but nothing changes for agents or requesters</p>
-</div>
-<span class="comms-audience">OpEx</span>
-</article>
-<article class="comms-item">
-<div>
-<span class="comms-date">Aug 26</span>
-<h3>Change Advisory 2</h3>
-<p>Second change advisory notifying IT staff of the planned move to active routing</p>
-</div>
-<span class="comms-audience">All IT staff</span>
-</article>
-<article class="comms-item">
-<div>
-<span class="comms-date">Aug 19–30</span>
-<h3>Prepare agents</h3>
-<p>Send IT agent communications with links to the <strong>IT agent guide</strong>. Begin Service Desk-specific training</p>
-</div>
-<span class="comms-audience">IT agents</span>
-</article>
-<article class="comms-item">
-<div>
-<span class="comms-date">Aug 30</span>
-<h3>Confirm readiness</h3>
-<p>Analyze and share the monitoring-phase data and confirm readiness for active routing</p>
-</div>
-<span class="comms-audience">IT leadership</span>
-</article>
-<article class="comms-item">
-<div>
-<span class="comms-date">Aug 31</span>
-<h3>Launch</h3>
-<p>Activate and monitor auto-routing</p>
-</div>
-<span class="comms-audience">All IT staff</span>
-</article>
+<div class="impact-stack anim" style="--delay:260ms">
+<article class="impact-card"><span class="impact-stat">29h</span><div><strong>Faster for our community</strong><p>Saving 29 hours from the median ticket means less time waiting for help and less frustration when DUO issues block our community's ability to work or study</p></div></article>
+<article class="impact-card"><span class="impact-stat">↑</span><div><strong>More capacity for real support work</strong><p>When follow-up happens automatically, agents spend less time chasing the same missing details and more time handling exceptions and delivering higher-value service work</p></div></article>
 </div>
 </div>
-</section><section aria-labelledby="slide-12-title" class="slide slide--ink closing-slide phase--future" data-title="Leadership role" id="slide-12">
-<div class="slide-inner closing-layout">
+</section><section aria-labelledby="slide-12-title" class="slide slide--warm phase--future is-after" data-title="Lessons learned" id="slide-12">
+<div class="slide-inner lesson-layout">
 <span class="slide-number">12</span>
 <div>
-<span class="eyebrow anim">Champion the change</span>
-<h2 class="anim" id="slide-12-title" style="--delay:140ms">Prepare our people</h2>
-<p class="lede anim" style="--delay:210ms">Otto shuffles the tickets</p>
-<p class="lede anim" style="--delay:210ms">We shift the culture</p>
+<span class="eyebrow anim">Applying what we've learned</span>
+<h2 class="anim" id="slide-12-title" style="--delay:140ms">Automation <br><i>VS</i></br> Ambiguity</h2>
+<p class="lede anim" style="--delay:210ms">The MVP worked best where service patterns were clear. Working through our ambiguities is our next step toward improving auto triage</p>
 </div>
-<div class="leader-asks">
-<article class="leader-ask anim" style="--delay:170ms">
-<span>01</span>
-<div><strong>Raise the banner</strong><p>Herald Auto Triage and reinforce the message that it removes waiting and protects scarce capacity. It brings service closer to our community; it doesn't remove the people who deliver it</p></div>
-</article>
-<article class="leader-ask anim" style="--delay:240ms">
-<span>02</span>
-<div><strong>Rally your people</strong><p>Confirm your teams understand the coming change and their roles in it. Direct them to the communications and resources being shared. I’ll also send everyone a one-page reference after this meeting</p></div>
-</article>
-<article class="leader-ask anim" style="--delay:310ms">
-<span>03</span>
-<div><strong>Fortify our foundation</strong><p>This is the foundation of service automation. We need to hold the line through the early rollout, learn from every result, and build the operational discipline needed to scale automated routing and responses</p></div>
-</article>
+<div class="lesson-stack anim" style="--delay:260ms">
+<article class="lesson-card"><span>01</span><div><strong>Clearer patterns</strong><p>Auto Triage is trained against existing human patterns. We expected, and proved, that it inherited  some misrouting habits from our original data set. Giving our staff the tools and resources to perform more accurately today, will improve our future data for even more accurate performance</p></div></article>
+<article class="lesson-card"><span>02</span><div><strong>Stronger service boundaries</strong><p>When multiple IT service desks offer similar support, classification and model training needs more context supported by a clearer service definitions</p></div></article>
+<article class="lesson-card"><span>03</span><div><strong>Factoring entity info</strong><p>Our next step is in improving how we consider the requestor's entity information. Improving matching to the requestor's local service desk when appropriate</p></div></article>
+<article class="lesson-card"><span>04</span><div><strong>Scaling thoughtfully</strong><p>The next step is tighening accuracy of the current in-scope categories and then slowly expanding out to our next batch of high priority services</p></div></article>
 </div>
-<p class="closing-line anim" style="--delay:390ms"><strong>SEQUENDA VIA</strong> OUR PATH FORWARD</p>
-
 </div>
 </section></main>
-<footer aria-label="Presentation controls" class="deck-footer">
-<div class="footer-tools">
-<button aria-label="Open slide overview" class="footer-button" id="overviewButton" title="Overview (M)" type="button">
-<svg aria-hidden="true" class="chrome-icon" viewbox="0 0 20 20">
-<rect height="5" width="5" x="2.5" y="2.5"></rect>
-<rect height="5" width="5" x="12.5" y="2.5"></rect>
-<rect height="5" width="5" x="2.5" y="12.5"></rect>
-<rect height="5" width="5" x="12.5" y="12.5"></rect>
-</svg>
-<span class="tool-label">Overview</span>
-</button>
-<button aria-label="Enter fullscreen" class="footer-button" id="fullscreenButton" title="Fullscreen (F)" type="button">
-<svg aria-hidden="true" class="chrome-icon" viewbox="0 0 20 20">
-<path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4"></path>
-</svg>
-<span class="tool-label" id="fullscreenLabel">Fullscreen</span>
-</button>
-</div>
-<div aria-live="polite" class="footer-status">
-<strong id="slideCounter">01 / 12</strong>
-</div>
+<footer class="deck-footer">
 <div class="deck-nav">
 <button aria-label="Previous slide" class="nav-button" disabled="" id="previousButton" type="button">
 <span aria-hidden="true">←</span><span class="nav-label">Previous</span>
@@ -4254,11 +4435,7 @@
       }, { passive: true });
 
       document.addEventListener("fullscreenchange", function () {
-        var isFullscreen = Boolean(document.fullscreenElement);
-        fullscreenButton.setAttribute("aria-label", isFullscreen ? "Exit fullscreen" : "Enter fullscreen");
-        fullscreenButton.setAttribute("aria-pressed", isFullscreen ? "true" : "false");
-        var fullscreenLabel = document.getElementById("fullscreenLabel");
-        if (fullscreenLabel) fullscreenLabel.textContent = isFullscreen ? "Exit fullscreen" : "Fullscreen";
+        fullscreenButton.setAttribute("aria-label", document.fullscreenElement ? "Exit fullscreen" : "Enter fullscreen");
       });
 
       window.addEventListener("hashchange", function () {
