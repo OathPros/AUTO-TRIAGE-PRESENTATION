@@ -3875,25 +3875,35 @@ details.success-detail p {
 
 
 /* September performance: match the future-state palette and typography. */
-.september-layout { gap: clamp(1.2rem, 3vh, 2.2rem); }
+.september-layout { gap: clamp(1rem, 2.5vh, 1.8rem); }
 .september-layout h2 { max-width: none; font-size: clamp(2.4rem, 4.6vw, 4.8rem); margin-bottom: 0.7rem; }
 .september-layout .lede { max-width: none; }
 .september-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
-.september-card { padding: clamp(1rem, 2vw, 1.7rem); border: 1px solid var(--line); border-top: 3px solid var(--chart-color); background: var(--paper); text-align: center; }
+.september-card { padding: clamp(1rem, 1.6vw, 1.5rem); border: 1px solid var(--line); border-top: 3px solid var(--chart-color); background: var(--paper); text-align: center; }
 .september-total { display: block; font-size: clamp(2.4rem, 4vw, 3.8rem); font-weight: 650; letter-spacing: -0.055em; line-height: 1.1; }
 .september-label { color: var(--muted); margin: 0.5rem 0 1.4rem; font-size: 0.95rem; }
 .september-card h3 { font-size: clamp(1.05rem, 1.6vw, 1.35rem); margin-bottom: 1rem; }
-.september-donut { position: relative; width: clamp(9rem, 14vw, 12rem); aspect-ratio: 1; margin: auto; }
+.september-donut { position: relative; width: clamp(8.5rem, 12.5vw, 11rem); aspect-ratio: 1; margin: auto; }
 .september-donut svg { display: block; width: 100%; height: 100%; transform: rotate(-90deg); }
-.september-ring { fill: none; stroke: var(--soft); stroke-width: 18; }
+.september-ring { fill: none; stroke: #e9edf0; stroke-width: 18; }
 .september-ring--value { stroke: var(--chart-color); }
 .september-donut-label { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 0.35rem; }
 .september-donut-label strong { font-size: clamp(1.6rem, 2.3vw, 2.1rem); letter-spacing: -0.035em; }
 .september-donut-label span { font-size: 0.8rem; color: var(--muted); }
-.september-note { max-width: 85ch; margin: 0; padding-left: 1rem; border-left: 3px solid var(--york-red); color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
+.september-note { display: grid; grid-template-columns: 0.9fr 1.5fr; gap: 0.7rem 2rem; margin: 0; padding: 0.9rem 0 0; border-top: 1px solid var(--line); color: #595959; font-size: clamp(0.8rem, 1vw, 0.9rem); line-height: 1.5; }
+.september-note p { margin: 0; }
+.september-note strong { display: block; margin-bottom: 0.2rem; color: var(--ink); font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase; }
+@media (max-height: 820px) and (min-width: 761px) {
+  .september-layout { padding: 1.4rem 0; gap: 1rem; }
+  .september-layout h2 { font-size: clamp(2.4rem, 4.2vw, 4rem); margin-bottom: 0; }
+  .september-card { padding: 1rem; }
+  .september-label { margin-bottom: 1rem; }
+  .september-donut { width: 9rem; }
+}
 @media (max-width: 760px) {
   .september-grid { grid-template-columns: 1fr; }
   .september-donut { width: 10rem; }
+  .september-note { grid-template-columns: 1fr; gap: 1rem; }
 }
 
 </style>
@@ -4127,22 +4137,26 @@ details.success-detail p {
 <span class="slide-number">10</span>
 <div><span class="eyebrow anim">SCALING THE PEAK</span>
 <h2 class="anim" id="slide-10-title" style="--delay:140ms">How we did in September</h2>
-<div class="september-grid anim" style="--delay:260ms"><article class="september-card" style="--chart-color:var(--green)">
+</div>
+<div class="september-grid anim" style="--delay:260ms"><article class="september-card" style="--chart-color:#159b79">
 <strong class="september-total">4,413</strong><p class="september-label">Tickets processed</p>
 <h3>Model coverage</h3>
 <div class="september-donut"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="september-ring" cx="60" cy="60" r="49"></circle><circle class="september-ring september-ring--value" cx="60" cy="60" r="49" pathLength="100" stroke-dasharray="53.9 46.1"></circle></svg><div class="september-donut-label"><strong>53.9%</strong><span>2,380 / 4,413</span></div></div>
 </article>
-<article class="september-card" style="--chart-color:var(--blue)">
+<article class="september-card" style="--chart-color:#367ac7">
 <strong class="september-total">2,380</strong><p class="september-label">Classified with confidence</p>
 <h3>Model accuracy</h3>
 <div class="september-donut"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="september-ring" cx="60" cy="60" r="49"></circle><circle class="september-ring september-ring--value" cx="60" cy="60" r="49" pathLength="100" stroke-dasharray="86.3 13.7"></circle></svg><div class="september-donut-label"><strong>86.3%</strong><span>2,053 / 2,380</span></div></div>
 </article>
-<article class="september-card" style="--chart-color:var(--amber)">
+<article class="september-card" style="--chart-color:#e31837">
 <strong class="september-total">1,255</strong><p class="september-label">DUO 2FA tickets</p>
 <h3>DUO responses sent</h3>
 <div class="september-donut"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="september-ring" cx="60" cy="60" r="49"></circle><circle class="september-ring september-ring--value" cx="60" cy="60" r="49" pathLength="100" stroke-dasharray="30.9 69.1"></circle></svg><div class="september-donut-label"><strong>30.9%</strong><span>388 / 1,255</span></div></div>
 </article></div>
-<p class="september-note anim" style="--delay:320ms">This analysis is limited to tickets received and resolved during September 2026. Agent-assigned categories are treated as ground truth, assuming the resolving agent assigns the correct category before resolving each ticket.</p>
+<div class="september-note anim" style="--delay:320ms">
+<p><strong>Reporting period</strong>Tickets received and resolved during September 2026.</p>
+<p><strong>How accuracy is measured</strong>Agent-assigned categories are treated as ground truth, assuming the resolving agent selects the correct category before closing each ticket.</p>
+</div>
 </div>
 </section><section aria-labelledby="slide-11-title" class="slide slide--ink phase--future is-after" data-title="Our success" id="slide-11">
 <div class="slide-inner success-layout">
